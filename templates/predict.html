@@ -1,0 +1,52 @@
+<DOCTYPE html>
+    <html lang="it">
+
+    <head>
+        <title>Diabetes dataset classification</title>
+    </head>
+
+    <body>
+        <header style="padding:5px; background-color: orange; border-radius: 15px; border: 3px #000 solid;">
+            <h1 style="text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Diabetes dataset classification</h1>
+        </header>
+        <form action="{{url_for('predict')}}" method="GET">
+            <fieldset style="border: 2px #000 solid; display: inline-block; float: left; margin-right: 0 !important; width: 40%; margin-top: 10px; background-color: white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                <legend style="font-weight: bold;">Inserisci le informazioni personali:</legend>
+                <label for="glucose">Glucose:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="glucose" name="glucose" required/></label><br />
+                <label for="blood">Blood pressure:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="blood" name="blood" required/> (mm Hg)</label><br />
+                <label for="age">Age:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" id="age" name="age" required/> (anni)</label><br />
+                <label for="skin">Skin thickness:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="skin" name="skin" required/> (mm)</label><br/>
+                <label for="pregnancies">Pregnancies:
+                    <input style="text-align: left; margin-top: 5px;" type="number" min="0" id="pregnancies" name="pregnancies" required/></label><br />
+                <label for="insulin">Insulin:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="insulin" name="insulin" required/> (mu U/ml)</label><br />
+                <label for="bmi">BMI:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="bmi" name="bmi" required/> kg/(altezza in m)^2</label><br/>
+                <label for="dpf">Diabetes Pedigree Function:
+                    <input style="text-align: left; margin-top: 7px;" type="number" min="0" step="0.01" id="dpf" name="dpf" required/></label><br/>
+                <div style="text-align: center; display: block; margin-top: 30px;">
+                    <input type="submit" value="Invia" style="font-weight: bold; height: 40px; width: 100px; background-color: orange; border-radius: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"/>
+                </div>
+            </fieldset><br />
+            <section style="display: inline-block; float: right; width: 55%; border: 2px #000 solid; margin-top: 2px; padding: 5px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                <form>
+                    <label>Scegli un modello:
+                    <select name="model">
+                    <option value="xgboost_gs">XGBoost</option>
+                    <option value="perceptron_gs">Perceptron</option>
+                    <option value="logreg_gs">Logistic Regression</option>
+                    <option value="svm_gs">SVM</option>
+                    <option value="random_forest_gs">Random Forest</option>
+                    </select></label>
+                </form></br>
+                <label name="result">Prediction: {{resp}}</label>
+            </section>
+            
+        </form>
+    </body>
+
+    </html>
